@@ -9,21 +9,24 @@ function createServer(port) {
   let state = 10;
 
   const server = http.createServer((request, response) => {
-    response.writeHead(200, { 'Content-Type': 'application/json' });
-
     switch (request.url) {
       case '/state':
+        response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify({ state: state }));
         break;
       case '/add':
         state += 1;
+        response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify({ state: state }));
         break;
-      case '/substract':
+      case '/subtract':
         state -= 1;
+        response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify({ state: state }));
         break;
       case '/reset':
+        state == 10;
+        response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify({ state: state }));
         break;
       default:
