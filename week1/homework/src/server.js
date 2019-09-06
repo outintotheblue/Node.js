@@ -25,7 +25,7 @@ function createServer(port) {
         response.write(JSON.stringify({ state: state }));
         break;
       case '/reset':
-        state == 10;
+        state = 10;
         response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify({ state: state }));
         break;
@@ -39,6 +39,4 @@ function createServer(port) {
   return server;
 }
 
-module.exports = {
-  createServer,
-};
+module.exports = { createServer };
