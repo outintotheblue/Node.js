@@ -14,7 +14,7 @@ function helpMe() {
 
 function addTask(list, task) {
   list.push(task);
-  fs.writeFile('list.txt', list.join('\n'), err => {
+  fs.writeFile('list.txt', task, err => {
     if (err) console.log('You did not add a task!');
   });
   return list;
