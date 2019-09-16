@@ -7,15 +7,22 @@ let listItem = process.argv[3];
 
 function helpMe() {
   fs.readFile('help.txt', 'utf8', (err, help) => {
-    if (err) console.log('Could not help you');
+    if (err) {
+      console.log('Could not help you');
+    }
     console.log(help);
   });
 }
 
 function addTask(list, task) {
-  list.push(task);
+  // fs.appendFile('list.txt', 'action', 'utf8' (err) => {if (err) throw err;
+  // console.log('added task to file')})
   fs.writeFile('list.txt', task, err => {
-    if (err) console.log('You did not add a task!');
+    if (err) {
+      console.log('You did not add a task!');
+    } else {
+      list.push(task);
+    }
   });
   return list;
 }
