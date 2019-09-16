@@ -15,16 +15,23 @@ function helpMe() {
 }
 
 function addTask(list, task) {
-  // fs.appendFile('list.txt', 'action', 'utf8' (err) => {if (err) throw err;
-  // console.log('added task to file')})
-  fs.writeFile('list.txt', task, err => {
+  fs.appendFile('list.txt', task + '\n', 'utf8', err => {
     if (err) {
-      console.log('You did not add a task!');
+      throw err;
     } else {
-      list.push(task);
+      console.log(`added ${task} to list`);
     }
   });
-  return list;
+}
+
+function removeTask(list, task) {
+  list.splice(list.indexOf(task), 1);
+  console.log(`${task} was removed from list`);
+  fs.writeFile('list.txt', list, function(err) {
+    if (err) {
+      throw err;
+    }
+  });
 }
 
 function resetList() {
@@ -42,10 +49,10 @@ function whatDoYouWantToDo() {
     helpMe();
   }
   if (action === 'add') {
-    addTask(myList, action);
+    addTask(myList, listItem);
   }
   if (action === 'remove') {
-    removeTask(myList, action);
+    removeTask(myList, listItem);
   }
   if (action === 'reset') {
     resetList();
