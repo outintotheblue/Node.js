@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 let myList = fs.readFileSync('list.txt', 'utf8').split('\n');
+myList.pop();
 let action = process.argv[2];
 let listItem = process.argv[3];
 
