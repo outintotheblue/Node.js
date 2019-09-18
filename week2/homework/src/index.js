@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 let myList = fs.readFileSync('list.txt', 'utf8').split('\n');
-myList.pop();
 let action = process.argv[2];
 let listItem = process.argv[3];
 
@@ -27,8 +26,9 @@ function addTask(list, task) {
 
 function removeTask(list, task) {
   list.splice(list.indexOf(task), 1);
+  let splited = list.join('\n');
   console.log(`${task} was removed from list`);
-  fs.writeFile('list.txt', list, function(err) {
+  fs.writeFile('list.txt', splited, function(err) {
     if (err) {
       throw err;
     }
