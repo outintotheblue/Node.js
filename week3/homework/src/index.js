@@ -1,36 +1,36 @@
 'use strict';
 
-function readTodoWithId() {
-  const id = request.params.id;
-	app.get('/todo/:id', function (req, res) {
-		const getToDo = getElementById(req.params.id, todo);
-		if (getToDo) {
-			res.send(getToDo);
-		} else {
-			res.status(404).send();
-		}
-  });
-}
+const Express = require('express');
 
-function clearTodos() {
-	app.delete('/todo', (req, res, next) => {
-	res.send(todo)
-	});
-}
+// import our CRUD actions
+const {
+  createTodo,
+  readTodos,
+  updateTodo,
+  deleteTodo
+} = require('./actions');
 
-function markAsDone() {
-app.post('/todos/:id', (req, res, next) => {
-	}
-}
+const Todo = require('./todo');
 
-function markAsNotDone()  {
-	app.delete('/todo/:id', (req, res, next) => {
-		const todoIndex = getIndexById(req.params.id, todo);
-		if (todoIndex !== -1) {
-			todo.splice(todoIndex, 1);
-			res.status(204).send();
-		} else {
-			res.status(404).send();
-		}
-	});
-}
+const FILENAME  = 'todos.json';
+const PORT      = 3000;
+const TODO_SLUG = 'todos';
+
+const todo = new Todo(FILENAME);
+
+const app = new Express();
+
+// Use built-in JSON middleware to automatically parse JSON
+app.use(Express.json());
+
+app.post(`/${TODO_SLUG}`,       createTodo.bind(null, todo));
+app.get(`/${TODO_SLUG}`,        readTodos.bind(null, todo));
+app.put(`/${TODO_SLUG}/:id`,    updateTodo.bind(null, todo));
+app.delete(`/${TODO_SLUG}/:id`, deleteTodo.bind(null, todo));
+
+app.listen(PORT, error => {
+  if (error)
+    return console.error(error);
+
+  console.log(`Server started on http://localhost:${PORT}`);
+});
