@@ -7,7 +7,11 @@ const {
   createTodo,
   readTodos,
   updateTodo,
-  deleteTodo
+  deleteTodo,
+  readTodo, 
+  deleteTodos,
+  markAsNotDone,
+  markDone
 } = require('./actions');
 
 const Todo = require('./todo');

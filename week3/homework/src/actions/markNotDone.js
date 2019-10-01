@@ -1,15 +1,17 @@
 'use script'
 
 function markAsNotDone()  {
-	app.delete('/todo/:id/done', (req, res, next) => {
-		const todoIndex = getIndexById(req.params.id, todo);
-		if (todoIndex !== -1) {
-			todo.splice(todoIndex, 1);
-			res.status(204).send();
-		} else {
-			res.status(404).send();
-		}
-	});
+const id = request.params.id;
+const flag = req.body.todo.done; 
+if (flag == null)	throw new Error('todo not set');
+if (flag != null) todo.marked(id,)
+		.then(todo => {
+      response.status(200);
+      response.json({ todo });
+		.catch(({ message, code }) => {
+      response.status(code === 'not-found' ? 404 : 500);
+      response.json({ error: message });
+    });
 }
 
 
