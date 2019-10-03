@@ -1,6 +1,6 @@
 'use strict';
 
-function readTodoWithId() {
+// function readTodoWithId() {
   const id = request.params.id;
 	app.get('/todo/:id', function (req, res) {
 		if (id) {
@@ -9,7 +9,7 @@ function readTodoWithId() {
 			res.status(404).send();
 		}
   });
-}
+//}
 
 /* function readTodo(todo, request, response) {
 	const id = request.params.id

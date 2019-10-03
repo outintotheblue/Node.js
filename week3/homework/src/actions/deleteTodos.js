@@ -1,12 +1,16 @@
 'use strict'
-/* 
-function clearTodos() {
+let todos = fs.readFileSync('todos.json');
+ function write() {
+	fs.writeFileSync ('todos.json', JSON.stringify(todos))
+ }
+
+// function clearTodos() {
   count = todos.length
 	app.delete('/todos', (req, res, next) => {
-		todos = [];
+	write([]);		
 		res.send(`${count} items are gone `)
 	});
-} */
+//} 
 
 function clearTodos(todo, req, res) {
 	todo.clear()
