@@ -1,8 +1,9 @@
 'use strict';
 
-	function readTodo(todo, request, response) {
+function readTodo(todo, request, response) {
 	const id = request.params.id
-	todo.read(id)
+	
+	todo.readId(id)
 	.then(todo => {
 		response.json({todo});
 		response.end();
@@ -12,5 +13,7 @@
 		response.json({error: message});
 	});
 }; 
+ 
 
+ 
 module.exports = readTodo;

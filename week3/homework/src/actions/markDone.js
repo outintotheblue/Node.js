@@ -3,23 +3,25 @@ const Express = require('express');
 
 const app = new Express();
 
-
 function read() {
   let todos = fs.readFileSync('todos.json');
   return JSON.parse(todos);
-}
+} 
+function write(list) {
+  fs.writeFileSync ('todos.json', JSON.stringify(list))
+};
+
 function markDone() {
 app.put('/todos/:id/done', (req, res) =>{
   const id = req.params.id;
-  read(); 
-  if (id) {
-    todo.done = true
-  }
-  write(list);
-  
+  const todos = read(); 
+  for (let todo of todos) {
+    if (id == todo.id) {
+      todo.done = true
+      write(todos)    }
+  }  
+  res.send();
+
 })
-res.send();
 }
-
-
 module.exports = markDone;

@@ -38,6 +38,19 @@ class Todo {
     });
   }
 
+  async readId(id) {
+    const todos = await this.read();
+    const todo = todos.find(t => t.id === id);
+    if (todo == null) {
+      const error = new Error(`To-do with ID ${id} does not exist`);
+      error.code = 'not-found';
+      throw error;
+    }
+    return todo;
+  
+   }
+
+
   async update(id, description) {
     const todos = await this.read();
 
@@ -56,10 +69,16 @@ class Todo {
   }
 
   async delete_(id) {
-    const todos         = await this.read();
+    const todos  = await this.read();
     const filteredTodos = todos.filter(t => t.id !== id);
 
     return this._save(filteredTodos);
+  }
+
+  async clearAll() {
+    const byeTodos = [];
+    return this._save(byeTodos)
+    
   }
 
   // Methods starting with underscore should not be used outside of this class

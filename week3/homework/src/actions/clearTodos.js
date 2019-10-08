@@ -1,7 +1,7 @@
 'use strict'
 
 function clearTodos(todo, req, res) {
-	todo.clear()
+	todo.clearAll()
 	.then(() => {
 		res.status(204);
 		res.end();
