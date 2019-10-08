@@ -1,6 +1,5 @@
 'use strict';
 
-  const id = request.params.id;
 	function readTodo(todo, request, response) {
 	const id = request.params.id
 	todo.read(id)

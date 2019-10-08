@@ -1,10 +1,14 @@
 'use strict'
+const Express = require('express');
+
+const app = new Express();
+
 
 function read() {
    let todos = fs.readFileSync('todos.json');
    return JSON.parse(todos);
  }
-
+function markNotDone() {
 app.put('/todos/:id/notdone', (req, res) =>{
      const id = req.params.id;
      read(); 
@@ -13,6 +17,6 @@ app.put('/todos/:id/notdone', (req, res) =>{
    })
    res.send();
 
-
+  }
 
 module.exports = markNotDone;
