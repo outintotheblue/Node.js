@@ -67,6 +67,25 @@ class Todo {
 
     return todo;
   }
+  async marked(id, boolean) {
+    const todos = await this.read();
+
+    const todo = todos.find(t => t.id === id);
+    if (todo == null) {
+      const error = new Error(`To-do with ID ${id} does not exist`);
+      error.code = 'not-found';
+      throw error;
+    }
+
+    todo.done = boolean;
+
+    await this._save(todos);
+
+    return todo;
+  }
+
+
+  
 
   async delete_(id) {
     const todos  = await this.read();
@@ -75,6 +94,10 @@ class Todo {
     return this._save(filteredTodos);
   }
 
+  
+async write(todos) {
+  this._save(todos)
+}
   async clearAll() {
     const byeTodos = [];
     return this._save(byeTodos)
