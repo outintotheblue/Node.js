@@ -28,7 +28,7 @@ function removeTask(list, task) {
   list.splice((task - 1), 1);
   let splited = list.join('\n') + '\n';
   console.log(`${task} was removed from list`);
-  fs.writeFile('list.txt', splited,  function(err) {
+  fs.writeFile('list.txt', splited, function(err) {
     if (err) {
       throw err;
     }
