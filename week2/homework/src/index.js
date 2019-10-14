@@ -63,3 +63,4 @@ function whatDoYouWantToDo() {
   }
 }
 whatDoYouWantToDo();
+// going to week 2
